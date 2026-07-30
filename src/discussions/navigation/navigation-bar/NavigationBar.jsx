@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { matchPath, useParams } from 'react-router';
+import classNames from 'classnames';
+import { matchPath, useLocation, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
@@ -13,21 +14,23 @@ import messages from './messages';
 
 function NavigationBar({ intl }) {
   const { courseId } = useParams();
+  const location = useLocation();
   const showLearnersTab = useShowLearnersTab();
+
+  const onPosts = Boolean(matchPath(location.pathname, {
+    path: [Routes.POSTS.ALL_POSTS, Routes.POSTS.MY_POSTS, Routes.POSTS.PATH],
+  }));
 
   const navLinks = [
     {
-      route: Routes.POSTS.MY_POSTS,
-      labelMessage: messages.myPosts,
-    },
-    {
       route: Routes.POSTS.ALL_POSTS,
-      labelMessage: messages.allPosts,
+      labelMessage: messages.posts,
+      isActive: () => onPosts,
     },
     {
       route: Routes.TOPICS.ALL,
-      isActive: (match, location) => Boolean(matchPath(location.pathname, { path: Routes.TOPICS.PATH })),
       labelMessage: messages.allTopics,
+      isActive: (match, loc) => Boolean(matchPath(loc.pathname, { path: Routes.TOPICS.PATH })),
     },
   ];
   if (showLearnersTab) {
@@ -38,13 +41,13 @@ function NavigationBar({ intl }) {
   }
 
   return (
-    <Nav variant="pills" className="py-2">
+    <Nav className="leti-discussions-nav py-0 flex-nowrap overflow-auto">
       {navLinks.map(link => (
-        <Nav.Item key={link.route}>
+        <Nav.Item key={link.route} className="flex-shrink-0">
           <Nav.Link
             as={NavLink}
             to={discussionsPath(link.route, { courseId })}
-            className="border"
+            className={classNames('leti-discussions-nav__link')}
             isActive={link.isActive}
           >
             {intl.formatMessage(link.labelMessage)}

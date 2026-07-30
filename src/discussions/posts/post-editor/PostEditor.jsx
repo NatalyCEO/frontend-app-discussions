@@ -402,36 +402,36 @@ function PostEditor({
             <FormikErrorFeedback name="comment" />
           </div>
 
-          <PostPreviewPane htmlNode={values.comment} isPost editExisting={editExisting} />
-
-          <div className="d-flex flex-row mt-n4.5 w-75 text-primary">
-            {!editExisting && (
-              <>
-                <Form.Group>
-                  <Form.Checkbox
-                    name="follow"
-                    checked={values.follow}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="mr-4.5"
-                  >
-                    {intl.formatMessage(messages.followPost)}
-                  </Form.Checkbox>
-                </Form.Group>
-                {allowAnonymousToPeers && (
-                <Form.Group>
-                  <Form.Checkbox
-                    name="anonymousToPeers"
-                    checked={values.anonymousToPeers}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  >
-                    {intl.formatMessage(messages.anonymousToPeersPost)}
-                  </Form.Checkbox>
-                </Form.Group>
-                )}
-              </>
-            )}
+          <div className="leti-post-editor-options d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between mt-2 mb-2">
+            <div className="leti-post-editor-options__checks d-flex flex-column flex-sm-row flex-wrap text-primary">
+              {!editExisting && (
+                <>
+                  <Form.Group className="mb-2 mb-md-0 mr-md-4">
+                    <Form.Checkbox
+                      name="follow"
+                      checked={values.follow}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {intl.formatMessage(messages.followPost)}
+                    </Form.Checkbox>
+                  </Form.Group>
+                  {allowAnonymousToPeers && (
+                  <Form.Group className="mb-2 mb-md-0">
+                    <Form.Checkbox
+                      name="anonymousToPeers"
+                      checked={values.anonymousToPeers}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    >
+                      {intl.formatMessage(messages.anonymousToPeersPost)}
+                    </Form.Checkbox>
+                  </Form.Group>
+                  )}
+                </>
+              )}
+            </div>
+            <PostPreviewPane htmlNode={values.comment} isPost editExisting={editExisting} />
           </div>
 
           <div className="d-flex justify-content-end mt-2.5">

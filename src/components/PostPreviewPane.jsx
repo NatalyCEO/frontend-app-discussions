@@ -14,10 +14,10 @@ function PostPreviewPane({
   const [showPreviewPane, setShowPreviewPane] = useState(false);
 
   return (
-    <>
+    <div className={`leti-post-preview-wrap ${showPreviewPane ? 'leti-post-preview-wrap--open w-100' : ''}`}>
       {showPreviewPane && (
         <div
-          className={`w-100 p-2 bg-light-200 rounded box-shadow-down-1 post-preview ${isPost ? 'mt-2 mb-5' : 'my-3'}`}
+          className={`w-100 p-2 bg-light-200 rounded box-shadow-down-1 post-preview ${isPost ? 'mt-2 mb-3' : 'my-3'}`}
           style={{ minHeight: '200px', wordBreak: 'break-word' }}
         >
           <IconButton
@@ -32,20 +32,20 @@ function PostPreviewPane({
           <HTMLLoader htmlNode={htmlNode} cssClassName="text-primary" />
         </div>
       )}
-      <div className="d-flex justify-content-end">
+      <div className="leti-show-preview d-flex justify-content-md-end justify-content-start">
         {!showPreviewPane
         && (
           <Button
             variant="link"
             size="md"
             onClick={() => setShowPreviewPane(true)}
-            className={`text-primary-500 px-0 ${editExisting && 'mb-4.5'}`}
+            className="text-primary-500 px-0"
           >
             {intl.formatMessage(messages.showPreviewButton)}
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

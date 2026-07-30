@@ -71,10 +71,24 @@ function Search({ intl }) {
           style={{ paddingRight: '1rem' }}
           placeholder={intl.formatMessage(postsMessages.search, { page: camelCase(page) })}
         />
-        <span className="mt-auto mb-auto mr-2.5 pointer-cursor-hover">
+        <span
+          className="leti-search-icon pointer-cursor-hover"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '2.75rem',
+            height: '2.75rem',
+            margin: 0,
+            padding: 0,
+            lineHeight: 0,
+            boxSizing: 'border-box',
+          }}
+        >
           <Icon
             src={SearchIcon}
             onClick={() => onSubmit(searchValue)}
+            style={{ display: 'block', margin: 0, width: '1.25rem', height: '1.25rem' }}
           />
         </span>
       </SearchField.Advanced>

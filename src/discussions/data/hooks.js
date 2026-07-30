@@ -24,6 +24,8 @@ import {
   selectPostThreadCount,
   selectUserHasModerationPrivileges,
   selectUserIsGroupTa,
+  selectUserIsStaff,
+  selectUserRoles,
 } from './selectors';
 import { fetchCourseConfig } from './thunks';
 
@@ -152,7 +154,22 @@ export const useAlertBannerVisible = (content) => {
   );
 };
 
-export const useShowLearnersTab = () => useSelector(selectLearnersTabEnabled);
+export const useShowLearnersTab = () => {
+  const learnersTabEnabled = useSelector(selectLearnersTabEnabled);
+  const hasModerationPrivileges = useSelector(selectUserHasModerationPrivileges);
+  const isUserAdmin = useSelector(selectUserIsStaff);
+  const isGroupTa = useSelector(selectUserIsGroupTa);
+  const userRoles = useSelector(selectUserRoles);
+  const isCourseTeam = hasModerationPrivileges
+    || isUserAdmin
+    || isGroupTa
+    || userRoles.includes('Moderator')
+    || userRoles.includes('Administrator')
+    || userRoles.includes('Community TA')
+    || userRoles.includes('Group Community TA');
+  // Learners mode is for course team only (IA 2+4), even if API flag is on for all.
+  return Boolean(learnersTabEnabled && isCourseTeam);
+};
 
 /**
  * React hook that gets the current topic ID from the current topic or category.

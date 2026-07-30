@@ -7,7 +7,7 @@ const messages = defineMessages({
   },
   addPostHeading: {
     id: 'discussions.post.editor.addPostHeading',
-    defaultMessage: 'Add a post',
+    defaultMessage: 'New post',
   },
   editPostHeading: {
     id: 'discussions.post.editor.editPostHeading',
