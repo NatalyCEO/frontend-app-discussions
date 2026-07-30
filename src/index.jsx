@@ -46,6 +46,7 @@ initialize({
       mergeConfig({
         LEARNING_BASE_URL: process.env.LEARNING_BASE_URL,
         DISPLAY_FEEDBACK_BANNER: process.env.DISPLAY_FEEDBACK_BANNER || 'false',
+        SITE_LANGUAGE_LIST: process.env.SITE_LANGUAGE_LIST || null,
       }, 'DiscussionsConfig');
     },
   },
