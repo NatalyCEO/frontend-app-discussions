@@ -18,14 +18,16 @@ const messages = {
   ar: arMessages,
   de: deMessages,
   'es-419': es419Messages,
-  'es-es': esEsMessages,
+  es: esEsMessages,
+  'es-es': esEsMessages, // legacy cookie alias
   fr: frMessages,
   'fr-ca': frCAMessages,
   'fr-fr': frFRMessages,
   'it-it': itITMessages,
   pl: plMessages,
   'pt-br': ptbrMessages,
-  'pt-pt': ptPtMessages,
+  pt: ptPtMessages,
+  'pt-pt': ptPtMessages, // legacy cookie alias
   ru: ruMessages,
   'tr-tr': trTRMessages,
   'zh-cn': zhcnMessages,
